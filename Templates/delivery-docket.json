@@ -1,0 +1,186 @@
+{
+  "title": "Delivery Docket {{delivery.number}}",
+  "pageSize": "A4",
+  "orientation": "Portrait",
+  "margin": 40,
+  "defaultFontSize": 10,
+  "blockSpacing": 8,
+  "showPageNumbers": true,
+  "blocks": [
+    {
+      "type": "watermark",
+      "text": "{{delivery.status}}",
+      "fontSize": 70,
+      "color": "#F3F4F6"
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "image",
+          "base64": "{{company.logoBase64}}",
+          "width": 80
+        },
+        {
+          "type": "addressBlock",
+          "label": "{{company.name}}",
+          "lines": [
+            "{{company.email}}",
+            "{{company.phone}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "certificateTitle",
+          "text": "Delivery Docket",
+          "caption": "{{delivery.number}}",
+          "fontSize": 24
+        },
+        {
+          "type": "barcode",
+          "label": "CODE_128",
+          "value": "{{delivery.number}}",
+          "width": 220,
+          "height": 55,
+          "caption": "{{delivery.number}}",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "addressBlock",
+          "label": "Deliver To",
+          "lines": [
+            "{{recipient.name}}",
+            "{{recipient.contact}}",
+            "{{recipient.address.line1}}",
+            "{{recipient.address.city}} {{recipient.address.state}} {{recipient.address.postcode}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "text",
+          "text": "Delivery Date: {{delivery.date}}",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "text": "Carrier: {{delivery.carrier}}",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "text": "Tracking: {{delivery.trackingNumber}}",
+          "align": "right"
+        },
+        {
+          "type": "qrCode",
+          "value": "{{delivery.trackingUrl}}",
+          "size": 80,
+          "caption": "Track delivery",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "line"
+    },
+    {
+      "type": "spacer",
+      "height": 10
+    },
+    {
+      "type": "table",
+      "dataPath": "packages",
+      "showHeader": true,
+      "columns": [
+        {
+          "header": "Item",
+          "value": "{{item}}"
+        },
+        {
+          "header": "SKU",
+          "value": "{{sku}}",
+          "width": 90
+        },
+        {
+          "header": "Qty",
+          "value": "{{quantity}}",
+          "width": 50,
+          "align": "right"
+        },
+        {
+          "header": "Notes",
+          "value": "{{notes}}"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 14
+    },
+    {
+      "type": "approvalStamp",
+      "status": "{{delivery.status}}",
+      "value": "{{delivery.trackingNumber}}",
+      "caption": "{{delivery.date}}",
+      "align": "right",
+      "width": 200
+    },
+    {
+      "type": "spacer",
+      "height": 18
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "signature",
+          "label": "Driver Signature",
+          "value": "{{driver.name}}",
+          "caption": "Date: {{delivery.date}}",
+          "width": 240
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "signature",
+          "label": "Received By",
+          "value": "{{recipient.contact}}",
+          "caption": "Date:",
+          "width": 240,
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 14
+    },
+    {
+      "type": "termsAndConditions",
+      "label": "Delivery Notes",
+      "lines": [
+        "Receiver should inspect goods before signing.",
+        "Report missing or damaged items within 24 hours.",
+        "This docket is not a tax invoice."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "title": "Quote {{quote.number}}",
+  "pageSize": "A4",
+  "orientation": "Portrait",
+  "margin": 40,
+  "defaultFontSize": 10,
+  "blockSpacing": 8,
+  "showPageNumbers": true,
+  "blocks": [
+    {
+      "type": "watermark",
+      "text": "{{document.watermark}}",
+      "fontSize": 72,
+      "color": "#EEEEEE"
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftWidth": 1,
+      "rightWidth": 1,
+      "leftBlocks": [
+        {
+          "type": "image",
+          "base64": "{{company.logoBase64}}",
+          "width": 90,
+          "align": "left"
+        },
+        {
+          "type": "spacer",
+          "height": 8
+        },
+        {
+          "type": "addressBlock",
+          "label": "{{company.name}}",
+          "lines": [
+            "{{company.abn}}",
+            "{{company.email}}",
+            "{{company.address.line1}}",
+            "{{company.address.city}} {{company.address.state}} {{company.address.postcode}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "certificateTitle",
+          "text": "Quote",
+          "caption": "{{quote.number}}",
+          "fontSize": 26
+        },
+        {
+          "type": "text",
+          "text": "Issue Date: {{quote.date}}",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "text": "Valid Until: {{quote.validUntil}}",
+          "align": "right"
+        },
+        {
+          "type": "barcode",
+          "label": "CODE_128",
+          "value": "{{quote.number}}",
+          "width": 220,
+          "height": 55,
+          "caption": "{{quote.number}}",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "addressBlock",
+          "label": "Prepared For",
+          "lines": [
+            "{{customer.name}}",
+            "{{customer.email}}",
+            "{{customer.address.line1}}",
+            "{{customer.address.city}} {{customer.address.state}} {{customer.address.postcode}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "approvalStamp",
+          "status": "{{quote.status}}",
+          "value": "Prepared by {{quote.preparedBy}}",
+          "caption": "{{quote.date}}",
+          "align": "right",
+          "width": 190
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "line"
+    },
+    {
+      "type": "spacer",
+      "height": 10
+    },
+    {
+      "type": "table",
+      "dataPath": "items",
+      "showHeader": true,
+      "columns": [
+        {
+          "header": "Description",
+          "value": "{{description}}"
+        },
+        {
+          "header": "Qty",
+          "value": "{{quantity}}",
+          "width": 50,
+          "align": "right"
+        },
+        {
+          "header": "Unit Price",
+          "value": "{{unitPrice}}",
+          "width": 80,
+          "align": "right"
+        },
+        {
+          "header": "Total",
+          "value": "{{total}}",
+          "width": 80,
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "totalsBox",
+      "align": "right",
+      "width": 250,
+      "padding": 10,
+      "keyValues": [
+        {
+          "label": "Subtotal",
+          "value": "{{totals.subtotal}}"
+        },
+        {
+          "label": "GST",
+          "value": "{{totals.gst}}"
+        },
+        {
+          "label": "Quote Total",
+          "value": "{{totals.total}}",
+          "bold": true,
+          "fontSize": 13
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "termsAndConditions",
+      "label": "Quote Terms",
+      "lines": [
+        "This quote is valid until {{quote.validUntil}}.",
+        "Prices are in AUD and include GST where applicable.",
+        "Work will begin after written acceptance."
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 18
+    },
+    {
+      "type": "signature",
+      "label": "Accepted By",
+      "value": "{{customer.name}}",
+      "caption": "Date:",
+      "width": 260,
+      "height": 50
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "templateName": "service-report",
+  "output": {
+    "fileName": "service-report-5001.pdf"
+  },
+  "data": {
+    "company": {
+      "name": "Example Field Services Pty Ltd",
+      "email": "service@example.test",
+      "phone": "1300 000 000",
+      "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII="
+    },
+    "report": {
+      "number": "SR-5001",
+      "date": "24 June 2026",
+      "status": "COMPLETED",
+      "notes": {
+        "line1": "System tested successfully after maintenance.",
+        "line2": "No further action required at this stage."
+      }
+    },
+    "job": {
+      "number": "JOB-88291"
+    },
+    "technician": {
+      "name": "Alex Technician"
+    },
+    "client": {
+      "name": "Acme Pty Ltd",
+      "site": "Melbourne Office",
+      "contact": "Jordan Client",
+      "address": {
+        "line1": "200 Collins Street",
+        "city": "Melbourne",
+        "state": "VIC",
+        "postcode": "3000"
+      }
+    },
+    "workItems": [
+      {
+        "task": "Inspected application server health",
+        "result": "Passed",
+        "time": "0.5h"
+      },
+      {
+        "task": "Checked logs and service status",
+        "result": "Passed",
+        "time": "0.5h"
+      },
+      {
+        "task": "Completed post-maintenance validation",
+        "result": "Passed",
+        "time": "1.0h"
+      }
+    ],
+    "parts": [
+      {
+        "name": "No physical parts used",
+        "quantity": "0",
+        "notes": "Software/service work only"
+      }
+    ]
+  }
+}

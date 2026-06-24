@@ -1,0 +1,41 @@
+{
+  "templateName": "receipt",
+  "output": {
+    "fileName": "receipt-3001.pdf"
+  },
+  "data": {
+    "company": {
+      "name": "Example SaaS Pty Ltd",
+      "abn": "ABN 12 345 678 901",
+      "email": "accounts@example.test",
+      "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII="
+    },
+    "receipt": {
+      "number": "RCT-3001",
+      "verifyUrl": "https://example.test/receipts/RCT-3001"
+    },
+    "invoice": {
+      "number": "INV-1002"
+    },
+    "customer": {
+      "name": "Acme Pty Ltd",
+      "email": "accounts@acme.example"
+    },
+    "payment": {
+      "method": "Card",
+      "paidAt": "24 June 2026",
+      "reference": "PAY-882901"
+    },
+    "payments": [
+      {
+        "description": "Payment for invoice INV-1002",
+        "date": "24 June 2026",
+        "amount": "$1,153.90"
+      }
+    ],
+    "totals": {
+      "amountPaid": "$1,153.90",
+      "balanceDue": "$0.00"
+    }
+  }
+}

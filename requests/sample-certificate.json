@@ -1,0 +1,30 @@
+{
+  "templateName": "certificate",
+  "output": {
+    "fileName": "certificate-4001.pdf"
+  },
+  "data": {
+    "company": {
+      "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII="
+    },
+    "certificate": {
+      "number": "CERT-4001",
+      "title": "Certificate of Completion",
+      "subtitle": "JSON-driven PDF Template API",
+      "watermark": "CERTIFIED",
+      "status": "VERIFIED",
+      "issueDate": "24 June 2026",
+      "verifyUrl": "https://example.test/certificates/CERT-4001"
+    },
+    "recipient": {
+      "name": "Danijel-James Wynyard"
+    },
+    "course": {
+      "name": "Controlled PDF Block Rendering"
+    },
+    "issuer": {
+      "name": "Example SaaS Pty Ltd",
+      "title": "Training Provider"
+    }
+  }
+}

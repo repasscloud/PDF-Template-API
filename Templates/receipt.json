@@ -1,0 +1,162 @@
+{
+  "title": "Payment Receipt {{receipt.number}}",
+  "pageSize": "A4",
+  "orientation": "Portrait",
+  "margin": 40,
+  "defaultFontSize": 10,
+  "blockSpacing": 8,
+  "showPageNumbers": true,
+  "blocks": [
+    {
+      "type": "watermark",
+      "text": "PAID",
+      "fontSize": 76,
+      "color": "#E8F5E9"
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "image",
+          "base64": "{{company.logoBase64}}",
+          "width": 80
+        },
+        {
+          "type": "addressBlock",
+          "label": "{{company.name}}",
+          "lines": [
+            "{{company.email}}",
+            "{{company.abn}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "certificateTitle",
+          "text": "Payment Receipt",
+          "caption": "{{receipt.number}}",
+          "fontSize": 24
+        },
+        {
+          "type": "approvalStamp",
+          "status": "PAID",
+          "value": "{{payment.method}}",
+          "caption": "{{payment.paidAt}}",
+          "align": "right",
+          "width": 180
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "addressBlock",
+          "label": "Received From",
+          "lines": [
+            "{{customer.name}}",
+            "{{customer.email}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "text",
+          "text": "Receipt Number: {{receipt.number}}",
+          "align": "right",
+          "bold": true
+        },
+        {
+          "type": "text",
+          "text": "Original Invoice: {{invoice.number}}",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "text": "Payment Reference: {{payment.reference}}",
+          "align": "right"
+        },
+        {
+          "type": "qrCode",
+          "value": "{{receipt.verifyUrl}}",
+          "size": 80,
+          "caption": "Verify receipt",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "line"
+    },
+    {
+      "type": "spacer",
+      "height": 10
+    },
+    {
+      "type": "table",
+      "dataPath": "payments",
+      "showHeader": true,
+      "columns": [
+        {
+          "header": "Description",
+          "value": "{{description}}"
+        },
+        {
+          "header": "Date",
+          "value": "{{date}}",
+          "width": 90
+        },
+        {
+          "header": "Amount",
+          "value": "{{amount}}",
+          "width": 90,
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "totalsBox",
+      "align": "right",
+      "width": 250,
+      "padding": 10,
+      "keyValues": [
+        {
+          "label": "Amount Paid",
+          "value": "{{totals.amountPaid}}",
+          "bold": true,
+          "fontSize": 13
+        },
+        {
+          "label": "Balance Due",
+          "value": "{{totals.balanceDue}}"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "termsAndConditions",
+      "label": "Receipt Notes",
+      "lines": [
+        "This receipt confirms payment received against invoice {{invoice.number}}.",
+        "Please retain this document for your records."
+      ]
+    }
+  ]
+}

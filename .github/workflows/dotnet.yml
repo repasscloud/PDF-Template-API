@@ -46,6 +46,11 @@ jobs:
         with:
           name: generated-pdfs
           path: |
+            certificate-4001.pdf
+            delivery-docket-6001.pdf
             invoice-1001.pdf
             invoice2-1002.pdf
+            quote-2001.pdf
+            receipt-3001.pdf
+            service-report-5001.pdf
             app.log

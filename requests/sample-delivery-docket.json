@@ -1,0 +1,55 @@
+{
+  "templateName": "delivery-docket",
+  "output": {
+    "fileName": "delivery-docket-6001.pdf"
+  },
+  "data": {
+    "company": {
+      "name": "Example Logistics Pty Ltd",
+      "email": "dispatch@example.test",
+      "phone": "1300 555 000",
+      "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII="
+    },
+    "delivery": {
+      "number": "DD-6001",
+      "date": "24 June 2026",
+      "carrier": "Example Courier",
+      "trackingNumber": "TRK-99112233",
+      "trackingUrl": "https://example.test/track/TRK-99112233",
+      "status": "DISPATCHED"
+    },
+    "recipient": {
+      "name": "Acme Pty Ltd",
+      "contact": "Jordan Client",
+      "address": {
+        "line1": "200 Collins Street",
+        "city": "Melbourne",
+        "state": "VIC",
+        "postcode": "3000"
+      }
+    },
+    "driver": {
+      "name": "Taylor Driver"
+    },
+    "packages": [
+      {
+        "item": "Thermal printer",
+        "sku": "HW-PRN-001",
+        "quantity": "1",
+        "notes": "Box 1 of 2"
+      },
+      {
+        "item": "Printer paper rolls",
+        "sku": "HW-PPR-080",
+        "quantity": "10",
+        "notes": "Box 2 of 2"
+      },
+      {
+        "item": "Network cable",
+        "sku": "NET-CAT6-3M",
+        "quantity": "2",
+        "notes": "Included with printer"
+      }
+    ]
+  }
+}

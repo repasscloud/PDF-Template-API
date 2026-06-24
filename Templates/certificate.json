@@ -1,0 +1,105 @@
+{
+  "title": "Certificate {{certificate.number}}",
+  "pageSize": "A4",
+  "orientation": "Landscape",
+  "margin": 50,
+  "defaultFontSize": 12,
+  "blockSpacing": 10,
+  "showPageNumbers": false,
+  "blocks": [
+    {
+      "type": "watermark",
+      "text": "{{certificate.watermark}}",
+      "fontSize": 78,
+      "color": "#F3F4F6"
+    },
+    {
+      "type": "image",
+      "base64": "{{company.logoBase64}}",
+      "width": 90,
+      "align": "center"
+    },
+    {
+      "type": "spacer",
+      "height": 14
+    },
+    {
+      "type": "certificateTitle",
+      "text": "{{certificate.title}}",
+      "caption": "{{certificate.subtitle}}",
+      "fontSize": 34
+    },
+    {
+      "type": "spacer",
+      "height": 18
+    },
+    {
+      "type": "text",
+      "text": "This certifies that",
+      "align": "center",
+      "fontSize": 13
+    },
+    {
+      "type": "text",
+      "text": "{{recipient.name}}",
+      "align": "center",
+      "bold": true,
+      "fontSize": 28
+    },
+    {
+      "type": "text",
+      "text": "has successfully completed",
+      "align": "center",
+      "fontSize": 13
+    },
+    {
+      "type": "text",
+      "text": "{{course.name}}",
+      "align": "center",
+      "bold": true,
+      "fontSize": 20
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "twoColumn",
+      "gap": 50,
+      "leftWidth": 1,
+      "rightWidth": 1,
+      "leftBlocks": [
+        {
+          "type": "signature",
+          "label": "Authorised Signature",
+          "value": "{{issuer.name}}",
+          "caption": "{{issuer.title}}",
+          "width": 260,
+          "height": 45,
+          "align": "center"
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "qrCode",
+          "value": "{{certificate.verifyUrl}}",
+          "size": 90,
+          "caption": "Verify certificate",
+          "align": "center"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 8
+    },
+    {
+      "type": "approvalStamp",
+      "status": "{{certificate.status}}",
+      "value": "{{certificate.number}}",
+      "caption": "{{certificate.issueDate}}",
+      "align": "center",
+      "width": 210
+    }
+  ]
+}

@@ -72,4 +72,93 @@ curl --fail --silent --show-error \
 
 echo "Created invoice2-1002.pdf"
 
+# ==============================================================================
+# Quote example
+# Uses: watermark, twoColumn, image, addressBlock, certificateTitle, barcode,
+# table, totalsBox, approvalStamp, termsAndConditions, signature.
+# Output: quote-2001.pdf
+# ==============================================================================
+
+echo "Generating quote-2001.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/sample-quote.json" \
+  --output "quote-2001.pdf"
+
+echo "Created quote-2001.pdf"
+
+
+# ==============================================================================
+# Payment receipt example
+# Uses: watermark, twoColumn, image, addressBlock, certificateTitle,
+# approvalStamp, qrCode, table, totalsBox, termsAndConditions.
+# Output: receipt-3001.pdf
+# ==============================================================================
+
+echo "Generating receipt-3001.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/sample-receipt.json" \
+  --output "receipt-3001.pdf"
+
+echo "Created receipt-3001.pdf"
+
+
+# ==============================================================================
+# Certificate example
+# Uses: landscape page, watermark, image, certificateTitle, text alignment,
+# twoColumn, signature, qrCode, approvalStamp.
+# Output: certificate-4001.pdf
+# ==============================================================================
+
+echo "Generating certificate-4001.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/sample-certificate.json" \
+  --output "certificate-4001.pdf"
+
+echo "Created certificate-4001.pdf"
+
+
+# ==============================================================================
+# Service report example
+# Uses: watermark, twoColumn, image, addressBlock, certificateTitle,
+# approvalStamp, barcode, tables, termsAndConditions, signatures.
+# Output: service-report-5001.pdf
+# ==============================================================================
+
+echo "Generating service-report-5001.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/sample-service-report.json" \
+  --output "service-report-5001.pdf"
+
+echo "Created service-report-5001.pdf"
+
+
+# ==============================================================================
+# Delivery docket example
+# Uses: watermark, twoColumn, image, addressBlock, certificateTitle, barcode,
+# qrCode, table, approvalStamp, signatures, termsAndConditions.
+# Output: delivery-docket-6001.pdf
+# ==============================================================================
+
+echo "Generating delivery-docket-6001.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/sample-delivery-docket.json" \
+  --output "delivery-docket-6001.pdf"
+
+echo "Created delivery-docket-6001.pdf"
+
 echo "Done."

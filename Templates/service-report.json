@@ -1,0 +1,193 @@
+{
+  "title": "Service Report {{report.number}}",
+  "pageSize": "A4",
+  "orientation": "Portrait",
+  "margin": 40,
+  "defaultFontSize": 10,
+  "blockSpacing": 8,
+  "showPageNumbers": true,
+  "blocks": [
+    {
+      "type": "watermark",
+      "text": "{{report.status}}",
+      "fontSize": 70,
+      "color": "#F3F4F6"
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "image",
+          "base64": "{{company.logoBase64}}",
+          "width": 80
+        },
+        {
+          "type": "addressBlock",
+          "label": "{{company.name}}",
+          "lines": [
+            "{{company.email}}",
+            "{{company.phone}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "certificateTitle",
+          "text": "Service Report",
+          "caption": "{{report.number}}",
+          "fontSize": 24
+        },
+        {
+          "type": "text",
+          "text": "Date: {{report.date}}",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "text": "Technician: {{technician.name}}",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "addressBlock",
+          "label": "Client",
+          "lines": [
+            "{{client.name}}",
+            "{{client.site}}",
+            "{{client.address.line1}}",
+            "{{client.address.city}} {{client.address.state}} {{client.address.postcode}}"
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "approvalStamp",
+          "status": "{{report.status}}",
+          "value": "Job {{job.number}}",
+          "caption": "{{report.date}}",
+          "align": "right",
+          "width": 190
+        },
+        {
+          "type": "barcode",
+          "label": "CODE_128",
+          "value": "{{job.number}}",
+          "width": 220,
+          "height": 55,
+          "caption": "{{job.number}}",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Work Performed"
+    },
+    {
+      "type": "table",
+      "dataPath": "workItems",
+      "showHeader": true,
+      "columns": [
+        {
+          "header": "Task",
+          "value": "{{task}}"
+        },
+        {
+          "header": "Result",
+          "value": "{{result}}",
+          "width": 120
+        },
+        {
+          "header": "Time",
+          "value": "{{time}}",
+          "width": 70,
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Parts Used"
+    },
+    {
+      "type": "table",
+      "dataPath": "parts",
+      "showHeader": true,
+      "columns": [
+        {
+          "header": "Part",
+          "value": "{{name}}"
+        },
+        {
+          "header": "Qty",
+          "value": "{{quantity}}",
+          "width": 50,
+          "align": "right"
+        },
+        {
+          "header": "Notes",
+          "value": "{{notes}}"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 16
+    },
+    {
+      "type": "termsAndConditions",
+      "label": "Technician Notes",
+      "lines": [
+        "{{report.notes.line1}}",
+        "{{report.notes.line2}}"
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 18
+    },
+    {
+      "type": "twoColumn",
+      "gap": 24,
+      "leftBlocks": [
+        {
+          "type": "signature",
+          "label": "Technician Signature",
+          "value": "{{technician.name}}",
+          "caption": "Date: {{report.date}}",
+          "width": 240
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "signature",
+          "label": "Client Acceptance",
+          "value": "{{client.contact}}",
+          "caption": "Date:",
+          "width": 240,
+          "align": "right"
+        }
+      ]
+    }
+  ]
+}

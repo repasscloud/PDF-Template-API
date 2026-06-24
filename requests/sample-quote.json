@@ -1,0 +1,65 @@
+{
+  "templateName": "quote",
+  "output": {
+    "fileName": "quote-2001.pdf"
+  },
+  "data": {
+    "document": {
+      "watermark": "QUOTE"
+    },
+    "company": {
+      "name": "Example SaaS Pty Ltd",
+      "abn": "ABN 12 345 678 901",
+      "email": "sales@example.test",
+      "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=",
+      "address": {
+        "line1": "Level 1, 100 George Street",
+        "city": "Sydney",
+        "state": "NSW",
+        "postcode": "2000"
+      }
+    },
+    "quote": {
+      "number": "QTE-2001",
+      "date": "24 June 2026",
+      "validUntil": "24 July 2026",
+      "status": "DRAFT",
+      "preparedBy": "System"
+    },
+    "customer": {
+      "name": "Acme Pty Ltd",
+      "email": "accounts@acme.example",
+      "address": {
+        "line1": "200 Collins Street",
+        "city": "Melbourne",
+        "state": "VIC",
+        "postcode": "3000"
+      }
+    },
+    "items": [
+      {
+        "description": "Implementation discovery workshop",
+        "quantity": "1",
+        "unitPrice": "$750.00",
+        "total": "$750.00"
+      },
+      {
+        "description": "PDF template configuration",
+        "quantity": "4",
+        "unitPrice": "$180.00",
+        "total": "$720.00"
+      },
+      {
+        "description": "Deployment support",
+        "quantity": "2",
+        "unitPrice": "$150.00",
+        "total": "$300.00"
+      }
+    ],
+    "totals": {
+      "subtotal": "$1,770.00",
+      "gst": "$177.00",
+      "total": "$1,947.00"
+    }
+  }
+}
