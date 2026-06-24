@@ -1,0 +1,39 @@
+{
+  "templateName": "invoice",
+  "output": {
+    "fileName": "invoice-1001.pdf"
+  },
+  "templatePatch": {
+    "margin": 36,
+    "title": "Invoice {{invoice.number}}"
+  },
+  "data": {
+    "invoice": {
+      "number": "INV-1001",
+      "date": "24 June 2026"
+    },
+    "customer": {
+      "name": "Acme Pty Ltd",
+      "email": "accounts@acme.example"
+    },
+    "items": [
+      {
+        "description": "Platform licence",
+        "quantity": "1",
+        "unitPrice": "$499.00",
+        "total": "$499.00"
+      },
+      {
+        "description": "Support package",
+        "quantity": "2",
+        "unitPrice": "$150.00",
+        "total": "$300.00"
+      }
+    ],
+    "totals": {
+      "subtotal": "$799.00",
+      "gst": "$79.90",
+      "total": "$878.90"
+    }
+  }
+}

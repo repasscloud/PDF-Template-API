@@ -1,0 +1,104 @@
+{
+  "title": "Tax Invoice {{invoice.number}}",
+  "pageSize": "A4",
+  "orientation": "Portrait",
+  "margin": 40,
+  "defaultFontSize": 10,
+  "blockSpacing": 8,
+  "showPageNumbers": true,
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Tax Invoice"
+    },
+    {
+      "type": "text",
+      "text": "Invoice Number: {{invoice.number}}"
+    },
+    {
+      "type": "text",
+      "text": "Invoice Date: {{invoice.date}}"
+    },
+    {
+      "type": "spacer",
+      "height": 10
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Customer"
+    },
+    {
+      "type": "text",
+      "text": "{{customer.name}}"
+    },
+    {
+      "type": "text",
+      "text": "{{customer.email}}"
+    },
+    {
+      "type": "spacer",
+      "height": 10
+    },
+    {
+      "type": "line"
+    },
+    {
+      "type": "spacer",
+      "height": 10
+    },
+    {
+      "type": "table",
+      "dataPath": "items",
+      "showHeader": true,
+      "columns": [
+        {
+          "header": "Description",
+          "value": "{{description}}"
+        },
+        {
+          "header": "Qty",
+          "value": "{{quantity}}",
+          "width": 50,
+          "align": "right"
+        },
+        {
+          "header": "Unit Price",
+          "value": "{{unitPrice}}",
+          "width": 80,
+          "align": "right"
+        },
+        {
+          "header": "Total",
+          "value": "{{total}}",
+          "width": 80,
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 12
+    },
+    {
+      "type": "text",
+      "bold": true,
+      "text": "Subtotal: {{totals.subtotal}}",
+      "align": "right"
+    },
+    {
+      "type": "text",
+      "bold": true,
+      "text": "GST: {{totals.gst}}",
+      "align": "right"
+    },
+    {
+      "type": "text",
+      "bold": true,
+      "fontSize": 13,
+      "text": "Total: {{totals.total}}",
+      "align": "right"
+    }
+  ]
+}
