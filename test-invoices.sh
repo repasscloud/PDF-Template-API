@@ -281,7 +281,7 @@ echo "Created certificate-achievement-badge.pdf"
 # --- invoice2: named position (topRight) ---------------------------------------
 echo "Stamping invoice2-1002.pdf -> invoice2-1002-approved.pdf (position: topRight)..."
 
-INVOICE2_B64=$(base64 -i "invoice2-1002.pdf")
+INVOICE2_B64=$(base64 < "invoice2-1002.pdf" | tr -d '\n')
 
 curl --fail --silent --show-error \
   -X POST "$URL/pdf/stamp" \
@@ -329,7 +329,7 @@ echo "Created invoice2-1002-approved-2.pdf"
 # Top-right:  x = 842 - 28 - 125 = 689,  y = 595 - 28 - 84 = 483
 echo "Stamping certificate-4001.pdf -> certificate-4001-verified.pdf (x/y: 689,483)..."
 
-CERT_B64=$(base64 -i "certificate-4001.pdf")
+CERT_B64=$(base64 < "certificate-4001.pdf" | tr -d '\n')
 
 curl --fail --silent --show-error \
   -X POST "$URL/pdf/stamp" \
