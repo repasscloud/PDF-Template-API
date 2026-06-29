@@ -183,7 +183,7 @@ echo "Generating certificate-classic.pdf..."
 curl --fail --silent --show-error \
   -X POST "$URL/pdf" \
   -H "Content-Type: application/json" \
-  --data-binary "@requests/certificate-classic.json" \
+  --data-binary "@requests/sample-certificate-classic.json" \
   --output "certificate-classic.pdf"
 
 echo "Created certificate-classic.pdf"
@@ -200,7 +200,7 @@ echo "Generating certificate-modern-corporate.pdf..."
 curl --fail --silent --show-error \
   -X POST "$URL/pdf" \
   -H "Content-Type: application/json" \
-  --data-binary "@requests/certificate-modern-corporate.json" \
+  --data-binary "@requests/sample-certificate-modern-corporate.json" \
   --output "certificate-modern-corporate.pdf"
 
 echo "Created certificate-modern-corporate.pdf"
@@ -217,7 +217,7 @@ echo "Generating certificate-premium-gold.pdf..."
 curl --fail --silent --show-error \
   -X POST "$URL/pdf" \
   -H "Content-Type: application/json" \
-  --data-binary "@requests/certificate-premium-gold.json" \
+  --data-binary "@requests/sample-certificate-premium-gold.json" \
   --output "certificate-premium-gold.pdf"
 
 echo "Created certificate-premium-gold.pdf"
@@ -234,7 +234,7 @@ echo "Generating certificate-compliance.pdf..."
 curl --fail --silent --show-error \
   -X POST "$URL/pdf" \
   -H "Content-Type: application/json" \
-  --data-binary "@requests/certificate-compliance.json" \
+  --data-binary "@requests/sample-certificate-compliance.json" \
   --output "certificate-compliance.pdf"
 
 echo "Created certificate-compliance.pdf"
@@ -251,7 +251,7 @@ echo "Generating certificate-achievement-badge.pdf..."
 curl --fail --silent --show-error \
   -X POST "$URL/pdf" \
   -H "Content-Type: application/json" \
-  --data-binary "@requests/certificate-achievement-badge.json" \
+  --data-binary "@requests/sample-certificate-achievement-badge.json" \
   --output "certificate-achievement-badge.pdf"
 
 echo "Created certificate-achievement-badge.pdf"
@@ -259,11 +259,27 @@ echo "Created certificate-achievement-badge.pdf"
 
 # ==============================================================================
 # Stamp examples
-# Stamps invoice2-1002.pdf as APPROVED (green) and certificate-4001.pdf
-# as VERIFIED (green), both top-right corner.
+#
+# Two positioning modes are supported:
+#
+#   1. Named position  — set "position" to one of:
+#        topRight (default), topLeft, bottomRight, bottomLeft, center
+#      The stamp is placed 28 pt inside that corner automatically.
+#
+#   2. Explicit X/Y   — set "x" and "y" to exact PDF point coordinates.
+#      Origin (0,0) is BOTTOM-LEFT. Y increases upward.
+#      Common page sizes:
+#        A4 Portrait  595 x 842 pt   (1 cm ≈ 28.35 pt)
+#        A4 Landscape 842 x 595 pt
+#
+#      Formula for top-right of A4 portrait with a 125x84 pt stamp and 28 pt margin:
+#        x = 595 - 28 - 125 = 442
+#        y = 842 - 28 -  84 = 730
+#
 # ==============================================================================
 
-echo "Stamping invoice2-1002.pdf -> invoice2-1002-approved.pdf..."
+# --- invoice2: named position (topRight) ---------------------------------------
+echo "Stamping invoice2-1002.pdf -> invoice2-1002-approved.pdf (position: topRight)..."
 
 INVOICE2_B64=$(base64 -i "invoice2-1002.pdf")
 
@@ -284,7 +300,34 @@ curl --fail --silent --show-error \
 
 echo "Created invoice2-1002-approved.pdf"
 
-echo "Stamping certificate-4001.pdf -> certificate-4001-verified.pdf..."
+# --- invoice2: explicit X/Y — stamp shifted down by one stamp height ----------
+# A4 portrait = 595 x 842 pt.  Stamp: 125 wide x ~84 tall.  28 pt margin.
+# topRight baseline:  x = 595 - 28 - 125 = 442,  y = 842 - 28 - 84  = 730
+# Shifted down 84 pt: x = 442,                    y = 730 - 84        = 646
+echo "Stamping invoice2-1002.pdf -> invoice2-1002-approved-2.pdf (x/y: 442,646)..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf/stamp" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"pdfBase64\": \"$INVOICE2_B64\",
+    \"status\": \"APPROVED\",
+    \"value\": \"Approved by Finance\",
+    \"caption\": \"$(date '+%d %B %Y')\",
+    \"color\": \"#f12b8f\",
+    \"x\": 442,
+    \"y\": 646,
+    \"width\": 125,
+    \"fileName\": \"invoice2-1002-approved-2.pdf\"
+  }" \
+  --output "invoice2-1002-approved-2.pdf"
+
+echo "Created invoice2-1002-approved-2.pdf"
+
+# --- certificate: explicit X/Y coordinates ------------------------------------
+# A4 landscape = 842 x 595 pt.  Stamp: 125 wide x ~84 tall.  28 pt margin.
+# Top-right:  x = 842 - 28 - 125 = 689,  y = 595 - 28 - 84 = 483
+echo "Stamping certificate-4001.pdf -> certificate-4001-verified.pdf (x/y: 689,483)..."
 
 CERT_B64=$(base64 -i "certificate-4001.pdf")
 
@@ -296,8 +339,9 @@ curl --fail --silent --show-error \
     \"status\": \"VERIFIED\",
     \"value\": \"Verified by Registrar\",
     \"caption\": \"$(date '+%d %B %Y')\",
-    \"color\": \"#166534\",
-    \"position\": \"topRight\",
+    \"color\": \"#D4AF37\",
+    \"x\": 689,
+    \"y\": 483,
     \"width\": 125,
     \"fileName\": \"certificate-4001-verified.pdf\"
   }" \
