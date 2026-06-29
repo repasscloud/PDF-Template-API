@@ -60,25 +60,32 @@ public sealed class PdfStamper
         PdfFont boldFont,
         PdfFont regularFont)
     {
-        const float statusFontSize = 15f;
-        const float valueFontSize = 8.5f;
-        const float captionFontSize = 8f;
-        const float innerPadding = 8f;
-        const float borderWidth = 2f;
+        // Font sizes and spacing — tweak these to resize the stamp.
+        const float statusFontSize = 22f;
+        const float valueFontSize  = 11f;
+        const float captionFontSize = 10f;
+        const float innerPadding = 13f;   // top + bottom padding inside the box
+        const float lineGap = 5f;          // gap between each text line
+        const float borderWidth = 2.5f;
 
         var stampWidth = request.Width;
 
-        // Calculate stamp height based on how many lines are present.
-        var stampHeight = innerPadding * 2 + statusFontSize + 4;
-        if (!string.IsNullOrWhiteSpace(request.Value)) stampHeight += valueFontSize + 4;
-        if (!string.IsNullOrWhiteSpace(request.Caption)) stampHeight += captionFontSize + 3;
+        // Height: top padding + status + optional (gap+value) + optional (gap+caption) + bottom padding.
+        var stampHeight = innerPadding * 2 + statusFontSize;
+        if (!string.IsNullOrWhiteSpace(request.Value))   stampHeight += lineGap + valueFontSize;
+        if (!string.IsNullOrWhiteSpace(request.Caption)) stampHeight += lineGap + captionFontSize;
 
-        var (x, y) = StampPosition(pageSize, request.Position, stampWidth, stampHeight);
+        var (x, y) = StampPosition(pageSize, request, stampWidth, stampHeight);
 
-        // Use NewContentStreamAfter so stamp renders on top of existing content.
         var canvas = new PdfCanvas(page.NewContentStreamAfter(), page.GetResources(), pdfDoc);
 
-        // Border rectangle.
+        // QuestPDF (via SkiaSharp) writes [0.25 0 0 -0.25 0 pageHeight] cm at the top of
+        // every page content stream WITHOUT a surrounding q/Q, so the flipped+scaled CTM
+        // bleeds into every subsequent content stream on the same page.
+        // Cancel it with the inverse matrix [4 0 0 -4 0 4*pageHeight] so we work in
+        // standard PDF coordinates (origin bottom-left, Y increases upward, 1 unit = 1 pt).
+        canvas.ConcatMatrix(4, 0, 0, -4, 0, 4.0 * pageSize.GetHeight());
+
         canvas.SetStrokeColor(new DeviceRgb(r, g, b))
               .SetLineWidth(borderWidth)
               .Rectangle(x, y, stampWidth, stampHeight)
@@ -86,21 +93,21 @@ public sealed class PdfStamper
 
         canvas.SetFillColor(new DeviceRgb(r, g, b));
 
-        // Track vertical position from top of stamp (PDF y-origin is bottom-left).
+        // Position text working down from the top of the content area.
+        // In PDF coords Y increases upward, so "down" means subtracting.
         var textY = y + stampHeight - innerPadding - statusFontSize;
 
-        // Status line (bold, larger).
         DrawCenteredText(canvas, request.Status, boldFont, statusFontSize, x, textY, stampWidth);
-        textY -= statusFontSize + 4;
 
         if (!string.IsNullOrWhiteSpace(request.Value))
         {
+            textY -= lineGap + valueFontSize;
             DrawCenteredText(canvas, request.Value!, regularFont, valueFontSize, x, textY, stampWidth);
-            textY -= valueFontSize + 3;
         }
 
         if (!string.IsNullOrWhiteSpace(request.Caption))
         {
+            textY -= lineGap + captionFontSize;
             DrawCenteredText(canvas, request.Caption!, regularFont, captionFontSize, x, textY, stampWidth);
         }
 
@@ -128,19 +135,23 @@ public sealed class PdfStamper
 
     private static (float x, float y) StampPosition(
         Rectangle page,
-        string position,
+        PdfStampRequest request,
         float stampWidth,
         float stampHeight)
     {
+        // Explicit coordinates take priority over the named position.
+        if (request.X.HasValue && request.Y.HasValue)
+            return (request.X.Value, request.Y.Value);
+
         const float margin = 28f;
 
-        return position.ToLowerInvariant() switch
+        return request.Position.ToLowerInvariant() switch
         {
-            "topleft" => (margin, page.GetHeight() - margin - stampHeight),
-            "bottomleft" => (margin, margin),
+            "topleft"     => (margin, page.GetHeight() - margin - stampHeight),
+            "bottomleft"  => (margin, margin),
             "bottomright" => (page.GetWidth() - margin - stampWidth, margin),
-            "center" => (
-                (page.GetWidth() - stampWidth) / 2f,
+            "center"      => (
+                (page.GetWidth()  - stampWidth)  / 2f,
                 (page.GetHeight() - stampHeight) / 2f),
             _ => (page.GetWidth() - margin - stampWidth, page.GetHeight() - margin - stampHeight)
         };

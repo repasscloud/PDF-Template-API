@@ -19,7 +19,10 @@ public sealed class ApprovalStampBlockRenderer : IBlockRenderer
 
         var width = block.Width ?? 180;
         var padding = block.Padding ?? 8;
-        var color = BlockRenderHelpers.ResolveString(block.Color ?? "#166534", context);
+        var resolvedColor = BlockRenderHelpers.ResolveString(block.Color ?? "#166534", context);
+        // Fall back to default green if the token was not present in the data
+        // (unresolved tokens come back as the literal "{{...}}" string).
+        var color = resolvedColor.StartsWith("#") ? resolvedColor : "#166534";
 
         var aligned = BlockRenderHelpers.ApplyAlignment(container, block.Align ?? "right");
 
