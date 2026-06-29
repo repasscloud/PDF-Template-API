@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 *.swp
 
 # Other added files
+app.pid
