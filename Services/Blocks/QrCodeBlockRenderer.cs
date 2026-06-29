@@ -23,7 +23,7 @@ public sealed class QrCodeBlockRenderer : IBlockRenderer
         using var qrData = generator.CreateQrCode(value, QRCodeGenerator.ECCLevel.Q);
 
         var qrCode = new PngByteQRCode(qrData);
-        var bytes = qrCode.GetGraphic(20);
+        var bytes = qrCode.GetGraphic(40);
 
         var size = block.Size ?? block.Width ?? 100;
         var caption = BlockRenderHelpers.ResolveString(block.Caption, context);
