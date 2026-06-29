@@ -30,6 +30,7 @@ builder.Services.AddSingleton<TemplateMerger>();
 builder.Services.AddSingleton<PdfRenderer>();
 builder.Services.AddSingleton<ImageSourceResolver>();
 builder.Services.AddSingleton<BarcodeImageGenerator>();
+builder.Services.AddSingleton<PdfStamper>();
 
 builder.Services.AddSingleton<IBlockRenderer, HeadingBlockRenderer>();
 builder.Services.AddSingleton<IBlockRenderer, TextBlockRenderer>();
@@ -57,7 +58,8 @@ app.MapGet("/", () => Results.Ok(new
     service = "PDF Template API",
     endpoints = new[]
     {
-        "POST /pdf"
+        "POST /pdf",
+        "POST /pdf/stamp"
     }
 }));
 
@@ -89,6 +91,27 @@ app.MapPost("/pdf", async (
         {
             error = ex.Message
         });
+    }
+});
+
+app.MapPost("/pdf/stamp", (PdfStampRequest request, PdfStamper stamper) =>
+{
+    try
+    {
+        var stampedBytes = stamper.ApplyStamp(request);
+
+        var fileName = string.IsNullOrWhiteSpace(request.FileName)
+            ? "stamped.pdf"
+            : request.FileName;
+
+        return Results.File(
+            fileContents: stampedBytes,
+            contentType: "application/pdf",
+            fileDownloadName: fileName);
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new { error = ex.Message });
     }
 });
 

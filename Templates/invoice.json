@@ -1,52 +1,59 @@
 {
-  "title": "Tax Invoice {{invoice.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Portrait",
   "margin": 40,
   "defaultFontSize": 10,
-  "blockSpacing": 8,
+  "blockSpacing": 6,
   "showPageNumbers": true,
   "blocks": [
     {
-      "type": "heading",
-      "level": 1,
-      "text": "Tax Invoice"
-    },
-    {
-      "type": "text",
-      "text": "Invoice Number: {{invoice.number}}"
-    },
-    {
-      "type": "text",
-      "text": "Invoice Date: {{invoice.date}}"
+      "type": "twoColumn",
+      "gap": 24,
+      "leftWidth": 3,
+      "rightWidth": 2,
+      "leftBlocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Tax Invoice"
+        },
+        {
+          "type": "text",
+          "text": "{{invoice.number}}",
+          "bold": true,
+          "fontSize": 12
+        },
+        {
+          "type": "spacer",
+          "height": 10
+        },
+        {
+          "type": "text",
+          "text": "Date: {{invoice.date}}"
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "addressBlock",
+          "label": "Bill To",
+          "lines": [
+            "{{customer.name}}",
+            "{{customer.email}}"
+          ]
+        }
+      ]
     },
     {
       "type": "spacer",
-      "height": 10
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "Customer"
-    },
-    {
-      "type": "text",
-      "text": "{{customer.name}}"
-    },
-    {
-      "type": "text",
-      "text": "{{customer.email}}"
-    },
-    {
-      "type": "spacer",
-      "height": 10
+      "height": 18
     },
     {
       "type": "line"
     },
     {
       "type": "spacer",
-      "height": 10
+      "height": 12
     },
     {
       "type": "table",
@@ -79,26 +86,42 @@
     },
     {
       "type": "spacer",
-      "height": 12
+      "height": 14
     },
     {
-      "type": "text",
-      "bold": true,
-      "text": "Subtotal: {{totals.subtotal}}",
-      "align": "right"
+      "type": "totalsBox",
+      "align": "right",
+      "width": 240,
+      "padding": 10,
+      "keyValues": [
+        {
+          "label": "Subtotal",
+          "value": "{{totals.subtotal}}"
+        },
+        {
+          "label": "GST (10%)",
+          "value": "{{totals.gst}}"
+        },
+        {
+          "label": "Total Due",
+          "value": "{{totals.total}}",
+          "bold": true,
+          "fontSize": 13
+        }
+      ]
     },
     {
-      "type": "text",
-      "bold": true,
-      "text": "GST: {{totals.gst}}",
-      "align": "right"
+      "type": "spacer",
+      "height": 24
     },
     {
-      "type": "text",
-      "bold": true,
-      "fontSize": 13,
-      "text": "Total: {{totals.total}}",
-      "align": "right"
+      "type": "termsAndConditions",
+      "label": "Payment Terms",
+      "lines": [
+        "Payment is due within 14 days of this invoice date.",
+        "All prices are in AUD and include GST where applicable.",
+        "Please reference {{invoice.number}} on your payment."
+      ]
     }
   ]
 }

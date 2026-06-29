@@ -1,10 +1,10 @@
 {
-  "title": "Quote {{quote.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Portrait",
   "margin": 40,
   "defaultFontSize": 10,
-  "blockSpacing": 8,
+  "blockSpacing": 6,
   "showPageNumbers": true,
   "blocks": [
     {
@@ -15,19 +15,36 @@
     },
     {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
       "leftWidth": 1,
       "rightWidth": 1,
       "leftBlocks": [
         {
+          "type": "heading",
+          "level": 1,
+          "text": "Quote",
+          "fontSize": 22
+        },
+        {
+          "type": "text",
+          "text": "{{quote.number}}",
+          "bold": true,
+          "fontSize": 13
+        },
+        {
+          "type": "spacer",
+          "height": 14
+        },
+        {
           "type": "image",
           "base64": "{{company.logoBase64}}",
-          "width": 90,
+          "width": 80,
+          "height": 36,
           "align": "left"
         },
         {
           "type": "spacer",
-          "height": 8
+          "height": 4
         },
         {
           "type": "addressBlock",
@@ -42,10 +59,12 @@
       ],
       "rightBlocks": [
         {
-          "type": "certificateTitle",
-          "text": "Quote",
+          "type": "barcode",
+          "value": "{{quote.number}}",
+          "width": 220,
+          "height": 48,
           "caption": "{{quote.number}}",
-          "fontSize": 26
+          "align": "right"
         },
         {
           "type": "text",
@@ -58,24 +77,9 @@
           "align": "right"
         },
         {
-          "type": "barcode",
-          "label": "CODE_128",
-          "value": "{{quote.number}}",
-          "width": 220,
-          "height": 55,
-          "caption": "{{quote.number}}",
-          "align": "right"
-        }
-      ]
-    },
-    {
-      "type": "spacer",
-      "height": 16
-    },
-    {
-      "type": "twoColumn",
-      "gap": 24,
-      "leftBlocks": [
+          "type": "spacer",
+          "height": 14
+        },
         {
           "type": "addressBlock",
           "label": "Prepared For",
@@ -85,16 +89,6 @@
             "{{customer.address.line1}}",
             "{{customer.address.city}} {{customer.address.state}} {{customer.address.postcode}}"
           ]
-        }
-      ],
-      "rightBlocks": [
-        {
-          "type": "approvalStamp",
-          "status": "{{quote.status}}",
-          "value": "Prepared by {{quote.preparedBy}}",
-          "caption": "{{quote.date}}",
-          "align": "right",
-          "width": 190
         }
       ]
     },
@@ -107,7 +101,7 @@
     },
     {
       "type": "spacer",
-      "height": 10
+      "height": 8
     },
     {
       "type": "table",
@@ -140,33 +134,51 @@
     },
     {
       "type": "spacer",
-      "height": 12
+      "height": 10
     },
     {
-      "type": "totalsBox",
-      "align": "right",
-      "width": 250,
-      "padding": 10,
-      "keyValues": [
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
+      "leftBlocks": [
         {
-          "label": "Subtotal",
-          "value": "{{totals.subtotal}}"
-        },
+          "type": "approvalStamp",
+          "status": "{{quote.status}}",
+          "value": "Prepared by {{quote.preparedBy}}",
+          "caption": "{{quote.date}}",
+          "align": "left",
+          "width": 190
+        }
+      ],
+      "rightBlocks": [
         {
-          "label": "GST",
-          "value": "{{totals.gst}}"
-        },
-        {
-          "label": "Quote Total",
-          "value": "{{totals.total}}",
-          "bold": true,
-          "fontSize": 13
+          "type": "totalsBox",
+          "align": "right",
+          "width": 230,
+          "padding": 10,
+          "keyValues": [
+            {
+              "label": "Subtotal",
+              "value": "{{totals.subtotal}}"
+            },
+            {
+              "label": "GST (10%)",
+              "value": "{{totals.gst}}"
+            },
+            {
+              "label": "Quote Total",
+              "value": "{{totals.total}}",
+              "bold": true,
+              "fontSize": 13
+            }
+          ]
         }
       ]
     },
     {
       "type": "spacer",
-      "height": 16
+      "height": 14
     },
     {
       "type": "termsAndConditions",
@@ -179,15 +191,15 @@
     },
     {
       "type": "spacer",
-      "height": 18
+      "height": 14
     },
     {
       "type": "signature",
       "label": "Accepted By",
       "value": "{{customer.name}}",
       "caption": "Date:",
-      "width": 260,
-      "height": 50
+      "width": 240,
+      "height": 40
     }
   ]
 }

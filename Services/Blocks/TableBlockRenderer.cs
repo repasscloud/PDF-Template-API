@@ -38,11 +38,18 @@ public sealed class TableBlockRenderer : IBlockRenderer
                 {
                     foreach (var column in columns)
                     {
-                        header.Cell()
+                        var cell = header.Cell()
                             .BorderBottom(1)
-                            .Padding(4)
-                            .Text(column.Header)
-                            .SemiBold();
+                            .Padding(4);
+
+                        cell = column.Align?.ToLowerInvariant() switch
+                        {
+                            "right" => cell.AlignRight(),
+                            "center" => cell.AlignCenter(),
+                            _ => cell
+                        };
+
+                        cell.Text(column.Header).SemiBold();
                     }
                 });
             }

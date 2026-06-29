@@ -1,10 +1,10 @@
 {
-  "title": "Payment Receipt {{receipt.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Portrait",
   "margin": 40,
   "defaultFontSize": 10,
-  "blockSpacing": 8,
+  "blockSpacing": 6,
   "showPageNumbers": true,
   "blocks": [
     {
@@ -15,12 +15,36 @@
     },
     {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
       "leftBlocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Payment Receipt",
+          "fontSize": 20
+        },
+        {
+          "type": "text",
+          "text": "{{receipt.number}}",
+          "bold": true,
+          "fontSize": 13
+        },
+        {
+          "type": "spacer",
+          "height": 14
+        },
         {
           "type": "image",
           "base64": "{{company.logoBase64}}",
-          "width": 80
+          "width": 80,
+          "height": 36,
+          "align": "left"
+        },
+        {
+          "type": "spacer",
+          "height": 4
         },
         {
           "type": "addressBlock",
@@ -33,44 +57,17 @@
       ],
       "rightBlocks": [
         {
-          "type": "certificateTitle",
-          "text": "Payment Receipt",
+          "type": "barcode",
+          "value": "{{receipt.number}}",
+          "width": 220,
+          "height": 48,
           "caption": "{{receipt.number}}",
-          "fontSize": 24
+          "align": "right"
         },
         {
-          "type": "approvalStamp",
-          "status": "PAID",
-          "value": "{{payment.method}}",
-          "caption": "{{payment.paidAt}}",
-          "align": "right",
-          "width": 180
-        }
-      ]
-    },
-    {
-      "type": "spacer",
-      "height": 16
-    },
-    {
-      "type": "twoColumn",
-      "gap": 24,
-      "leftBlocks": [
-        {
-          "type": "addressBlock",
-          "label": "Received From",
-          "lines": [
-            "{{customer.name}}",
-            "{{customer.email}}"
-          ]
-        }
-      ],
-      "rightBlocks": [
-        {
           "type": "text",
-          "text": "Receipt Number: {{receipt.number}}",
-          "align": "right",
-          "bold": true
+          "text": "Date: {{payment.paidAt}}",
+          "align": "right"
         },
         {
           "type": "text",
@@ -83,11 +80,16 @@
           "align": "right"
         },
         {
-          "type": "qrCode",
-          "value": "{{receipt.verifyUrl}}",
-          "size": 80,
-          "caption": "Verify receipt",
-          "align": "right"
+          "type": "spacer",
+          "height": 14
+        },
+        {
+          "type": "addressBlock",
+          "label": "Received From",
+          "lines": [
+            "{{customer.name}}",
+            "{{customer.email}}"
+          ]
         }
       ]
     },
@@ -100,7 +102,7 @@
     },
     {
       "type": "spacer",
-      "height": 10
+      "height": 8
     },
     {
       "type": "table",
@@ -126,12 +128,12 @@
     },
     {
       "type": "spacer",
-      "height": 12
+      "height": 10
     },
     {
       "type": "totalsBox",
       "align": "right",
-      "width": 250,
+      "width": 230,
       "padding": 10,
       "keyValues": [
         {
@@ -148,14 +150,31 @@
     },
     {
       "type": "spacer",
-      "height": 16
+      "height": 12
     },
     {
-      "type": "termsAndConditions",
-      "label": "Receipt Notes",
-      "lines": [
-        "This receipt confirms payment received against invoice {{invoice.number}}.",
-        "Please retain this document for your records."
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 3,
+      "rightWidth": 2,
+      "leftBlocks": [
+        {
+          "type": "termsAndConditions",
+          "label": "Receipt Notes",
+          "lines": [
+            "This receipt confirms payment received against invoice {{invoice.number}}.",
+            "Please retain this document for your records."
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "qrCode",
+          "value": "{{receipt.verifyUrl}}",
+          "size": 70,
+          "caption": "Verify receipt",
+          "align": "right"
+        }
       ]
     }
   ]

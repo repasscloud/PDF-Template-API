@@ -1,10 +1,10 @@
 {
-  "title": "Service Report {{report.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Portrait",
   "margin": 40,
   "defaultFontSize": 10,
-  "blockSpacing": 8,
+  "blockSpacing": 6,
   "showPageNumbers": true,
   "blocks": [
     {
@@ -15,12 +15,36 @@
     },
     {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
       "leftBlocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Service Report",
+          "fontSize": 22
+        },
+        {
+          "type": "text",
+          "text": "{{report.number}}",
+          "bold": true,
+          "fontSize": 13
+        },
+        {
+          "type": "spacer",
+          "height": 14
+        },
         {
           "type": "image",
           "base64": "{{company.logoBase64}}",
-          "width": 80
+          "width": 80,
+          "height": 36,
+          "align": "left"
+        },
+        {
+          "type": "spacer",
+          "height": 4
         },
         {
           "type": "addressBlock",
@@ -33,10 +57,12 @@
       ],
       "rightBlocks": [
         {
-          "type": "certificateTitle",
-          "text": "Service Report",
-          "caption": "{{report.number}}",
-          "fontSize": 24
+          "type": "barcode",
+          "value": "{{job.number}}",
+          "width": 220,
+          "height": 48,
+          "caption": "Job {{job.number}}",
+          "align": "right"
         },
         {
           "type": "text",
@@ -47,17 +73,11 @@
           "type": "text",
           "text": "Technician: {{technician.name}}",
           "align": "right"
-        }
-      ]
-    },
-    {
-      "type": "spacer",
-      "height": 16
-    },
-    {
-      "type": "twoColumn",
-      "gap": 24,
-      "leftBlocks": [
+        },
+        {
+          "type": "spacer",
+          "height": 14
+        },
         {
           "type": "addressBlock",
           "label": "Client",
@@ -68,30 +88,18 @@
             "{{client.address.city}} {{client.address.state}} {{client.address.postcode}}"
           ]
         }
-      ],
-      "rightBlocks": [
-        {
-          "type": "approvalStamp",
-          "status": "{{report.status}}",
-          "value": "Job {{job.number}}",
-          "caption": "{{report.date}}",
-          "align": "right",
-          "width": 190
-        },
-        {
-          "type": "barcode",
-          "label": "CODE_128",
-          "value": "{{job.number}}",
-          "width": 220,
-          "height": 55,
-          "caption": "{{job.number}}",
-          "align": "right"
-        }
       ]
     },
     {
       "type": "spacer",
       "height": 12
+    },
+    {
+      "type": "line"
+    },
+    {
+      "type": "spacer",
+      "height": 8
     },
     {
       "type": "heading",
@@ -122,7 +130,7 @@
     },
     {
       "type": "spacer",
-      "height": 12
+      "height": 10
     },
     {
       "type": "heading",
@@ -152,7 +160,7 @@
     },
     {
       "type": "spacer",
-      "height": 16
+      "height": 12
     },
     {
       "type": "termsAndConditions",
@@ -164,18 +172,19 @@
     },
     {
       "type": "spacer",
-      "height": 18
+      "height": 14
     },
     {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
       "leftBlocks": [
         {
           "type": "signature",
           "label": "Technician Signature",
           "value": "{{technician.name}}",
           "caption": "Date: {{report.date}}",
-          "width": 240
+          "width": 220,
+          "height": 40
         }
       ],
       "rightBlocks": [
@@ -184,7 +193,8 @@
           "label": "Client Acceptance",
           "value": "{{client.contact}}",
           "caption": "Date:",
-          "width": 240,
+          "width": 220,
+          "height": 40,
           "align": "right"
         }
       ]

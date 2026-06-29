@@ -1,10 +1,10 @@
 {
-  "title": "Delivery Docket {{delivery.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Portrait",
   "margin": 40,
   "defaultFontSize": 10,
-  "blockSpacing": 8,
+  "blockSpacing": 6,
   "showPageNumbers": true,
   "blocks": [
     {
@@ -15,12 +15,36 @@
     },
     {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
       "leftBlocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Delivery Docket",
+          "fontSize": 20
+        },
+        {
+          "type": "text",
+          "text": "{{delivery.number}}",
+          "bold": true,
+          "fontSize": 13
+        },
+        {
+          "type": "spacer",
+          "height": 14
+        },
         {
           "type": "image",
           "base64": "{{company.logoBase64}}",
-          "width": 80
+          "width": 80,
+          "height": 36,
+          "align": "left"
+        },
+        {
+          "type": "spacer",
+          "height": 4
         },
         {
           "type": "addressBlock",
@@ -33,42 +57,12 @@
       ],
       "rightBlocks": [
         {
-          "type": "certificateTitle",
-          "text": "Delivery Docket",
-          "caption": "{{delivery.number}}",
-          "fontSize": 24
-        },
-        {
           "type": "barcode",
-          "label": "CODE_128",
           "value": "{{delivery.number}}",
           "width": 220,
-          "height": 55,
-          "caption": "{{delivery.number}}",
+          "height": 48,
           "align": "right"
-        }
-      ]
-    },
-    {
-      "type": "spacer",
-      "height": 16
-    },
-    {
-      "type": "twoColumn",
-      "gap": 24,
-      "leftBlocks": [
-        {
-          "type": "addressBlock",
-          "label": "Deliver To",
-          "lines": [
-            "{{recipient.name}}",
-            "{{recipient.contact}}",
-            "{{recipient.address.line1}}",
-            "{{recipient.address.city}} {{recipient.address.state}} {{recipient.address.postcode}}"
-          ]
-        }
-      ],
-      "rightBlocks": [
+        },
         {
           "type": "text",
           "text": "Delivery Date: {{delivery.date}}",
@@ -85,11 +79,18 @@
           "align": "right"
         },
         {
-          "type": "qrCode",
-          "value": "{{delivery.trackingUrl}}",
-          "size": 80,
-          "caption": "Track delivery",
-          "align": "right"
+          "type": "spacer",
+          "height": 14
+        },
+        {
+          "type": "addressBlock",
+          "label": "Deliver To",
+          "lines": [
+            "{{recipient.name}}",
+            "{{recipient.contact}}",
+            "{{recipient.address.line1}}",
+            "{{recipient.address.city}} {{recipient.address.state}} {{recipient.address.postcode}}"
+          ]
         }
       ]
     },
@@ -102,7 +103,7 @@
     },
     {
       "type": "spacer",
-      "height": 10
+      "height": 8
     },
     {
       "type": "table",
@@ -135,27 +136,16 @@
       "height": 14
     },
     {
-      "type": "approvalStamp",
-      "status": "{{delivery.status}}",
-      "value": "{{delivery.trackingNumber}}",
-      "caption": "{{delivery.date}}",
-      "align": "right",
-      "width": 200
-    },
-    {
-      "type": "spacer",
-      "height": 18
-    },
-    {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
       "leftBlocks": [
         {
           "type": "signature",
           "label": "Driver Signature",
           "value": "{{driver.name}}",
           "caption": "Date: {{delivery.date}}",
-          "width": 240
+          "width": 220,
+          "height": 40
         }
       ],
       "rightBlocks": [
@@ -164,22 +154,40 @@
           "label": "Received By",
           "value": "{{recipient.contact}}",
           "caption": "Date:",
-          "width": 240,
+          "width": 220,
+          "height": 40,
           "align": "right"
         }
       ]
     },
     {
       "type": "spacer",
-      "height": 14
+      "height": 12
     },
     {
-      "type": "termsAndConditions",
-      "label": "Delivery Notes",
-      "lines": [
-        "Receiver should inspect goods before signing.",
-        "Report missing or damaged items within 24 hours.",
-        "This docket is not a tax invoice."
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 3,
+      "rightWidth": 2,
+      "leftBlocks": [
+        {
+          "type": "termsAndConditions",
+          "label": "Delivery Notes",
+          "lines": [
+            "Receiver should inspect goods before signing.",
+            "Report missing or damaged items within 24 hours.",
+            "This docket is not a tax invoice."
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "qrCode",
+          "value": "{{delivery.trackingUrl}}",
+          "size": 70,
+          "caption": "Track delivery",
+          "align": "right"
+        }
       ]
     }
   ]

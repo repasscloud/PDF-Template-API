@@ -1,10 +1,10 @@
 {
-  "title": "Tax Invoice {{invoice.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Portrait",
   "margin": 40,
   "defaultFontSize": 10,
-  "blockSpacing": 8,
+  "blockSpacing": 6,
   "showPageNumbers": true,
   "blocks": [
     {
@@ -15,19 +15,36 @@
     },
     {
       "type": "twoColumn",
-      "gap": 24,
+      "gap": 20,
       "leftWidth": 1,
       "rightWidth": 1,
       "leftBlocks": [
         {
+          "type": "heading",
+          "level": 1,
+          "text": "Tax Invoice",
+          "fontSize": 22
+        },
+        {
+          "type": "text",
+          "text": "{{invoice.number}}",
+          "bold": true,
+          "fontSize": 13
+        },
+        {
+          "type": "spacer",
+          "height": 14
+        },
+        {
           "type": "image",
           "base64": "{{company.logoBase64}}",
-          "width": 90,
+          "width": 80,
+          "height": 36,
           "align": "left"
         },
         {
           "type": "spacer",
-          "height": 8
+          "height": 4
         },
         {
           "type": "addressBlock",
@@ -42,52 +59,11 @@
       ],
       "rightBlocks": [
         {
-          "type": "certificateTitle",
-          "text": "Tax Invoice",
-          "caption": "{{invoice.number}}",
-          "fontSize": 24
-        },
-        {
-          "type": "spacer",
-          "height": 8
-        },
-        {
           "type": "barcode",
-          "label": "CODE_128",
           "value": "{{invoice.number}}",
           "width": 220,
-          "height": 55,
+          "height": 48,
           "caption": "{{invoice.number}}",
-          "align": "right"
-        }
-      ]
-    },
-    {
-      "type": "spacer",
-      "height": 16
-    },
-    {
-      "type": "twoColumn",
-      "gap": 24,
-      "leftWidth": 1,
-      "rightWidth": 1,
-      "leftBlocks": [
-        {
-          "type": "addressBlock",
-          "label": "Bill To",
-          "lines": [
-            "{{customer.name}}",
-            "{{customer.email}}",
-            "{{customer.address.line1}}",
-            "{{customer.address.city}} {{customer.address.state}} {{customer.address.postcode}}"
-          ]
-        }
-      ],
-      "rightBlocks": [
-        {
-          "type": "text",
-          "bold": true,
-          "text": "Invoice Number: {{invoice.number}}",
           "align": "right"
         },
         {
@@ -101,24 +77,31 @@
           "align": "right"
         },
         {
-          "type": "qrCode",
-          "value": "{{invoice.paymentUrl}}",
-          "size": 90,
-          "caption": "Scan to pay",
-          "align": "right"
+          "type": "spacer",
+          "height": 14
+        },
+        {
+          "type": "addressBlock",
+          "label": "Bill To",
+          "lines": [
+            "{{customer.name}}",
+            "{{customer.email}}",
+            "{{customer.address.line1}}",
+            "{{customer.address.city}} {{customer.address.state}} {{customer.address.postcode}}"
+          ]
         }
       ]
     },
     {
       "type": "spacer",
-      "height": 16
+      "height": 12
     },
     {
       "type": "line"
     },
     {
       "type": "spacer",
-      "height": 10
+      "height": 8
     },
     {
       "type": "table",
@@ -151,67 +134,89 @@
     },
     {
       "type": "spacer",
-      "height": 12
+      "height": 10
     },
     {
-      "type": "totalsBox",
-      "align": "right",
-      "width": 250,
-      "padding": 10,
-      "keyValues": [
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
+      "leftBlocks": [
         {
-          "label": "Subtotal",
-          "value": "{{totals.subtotal}}"
-        },
+          "type": "approvalStamp",
+          "status": "{{approval.status}}",
+          "value": "Approved by {{approval.name}}",
+          "caption": "{{approval.date}}",
+          "align": "left",
+          "width": 190
+        }
+      ],
+      "rightBlocks": [
         {
-          "label": "GST",
-          "value": "{{totals.gst}}"
-        },
-        {
-          "label": "Total",
-          "value": "{{totals.total}}",
-          "bold": true,
-          "fontSize": 13
+          "type": "totalsBox",
+          "align": "right",
+          "width": 230,
+          "padding": 10,
+          "keyValues": [
+            {
+              "label": "Subtotal",
+              "value": "{{totals.subtotal}}"
+            },
+            {
+              "label": "GST (10%)",
+              "value": "{{totals.gst}}"
+            },
+            {
+              "label": "Total Due",
+              "value": "{{totals.total}}",
+              "bold": true,
+              "fontSize": 13
+            }
+          ]
         }
       ]
     },
     {
       "type": "spacer",
-      "height": 18
-    },
-    {
-      "type": "approvalStamp",
-      "status": "{{approval.status}}",
-      "value": "Approved by {{approval.name}}",
-      "caption": "{{approval.date}}",
-      "align": "right",
-      "width": 190
-    },
-    {
-      "type": "spacer",
-      "height": 24
+      "height": 14
     },
     {
       "type": "signature",
       "label": "Customer Signature",
       "value": "{{customer.name}}",
       "caption": "Date: {{invoice.date}}",
-      "width": 260,
-      "height": 50,
+      "width": 240,
+      "height": 40,
       "align": "left"
     },
     {
       "type": "spacer",
-      "height": 18
+      "height": 10
     },
     {
-      "type": "termsAndConditions",
-      "label": "Terms and Conditions",
-      "lines": [
-        "Payment is due by {{invoice.dueDate}}.",
-        "All prices are in AUD unless otherwise stated.",
-        "This invoice includes GST where applicable.",
-        "Late payment may result in service suspension."
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 3,
+      "rightWidth": 2,
+      "leftBlocks": [
+        {
+          "type": "termsAndConditions",
+          "label": "Terms and Conditions",
+          "lines": [
+            "Payment is due by {{invoice.dueDate}}.",
+            "All prices are in AUD and include GST where applicable.",
+            "Late payment may result in service suspension."
+          ]
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "qrCode",
+          "value": "{{invoice.paymentUrl}}",
+          "size": 70,
+          "caption": "Scan to pay",
+          "align": "right"
+        }
       ]
     }
   ]

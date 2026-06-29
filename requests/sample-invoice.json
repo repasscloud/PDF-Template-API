@@ -4,8 +4,7 @@
     "fileName": "invoice-1001.pdf"
   },
   "templatePatch": {
-    "margin": 36,
-    "title": "Invoice {{invoice.number}}"
+    "margin": 36
   },
   "data": {
     "invoice": {

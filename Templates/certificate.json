@@ -1,10 +1,10 @@
 {
-  "title": "Certificate {{certificate.number}}",
+  "title": "",
   "pageSize": "A4",
   "orientation": "Landscape",
-  "margin": 50,
+  "margin": 40,
   "defaultFontSize": 12,
-  "blockSpacing": 10,
+  "blockSpacing": 8,
   "showPageNumbers": false,
   "blocks": [
     {
@@ -16,22 +16,23 @@
     {
       "type": "image",
       "base64": "{{company.logoBase64}}",
-      "width": 90,
+      "width": 80,
+      "height": 40,
       "align": "center"
     },
     {
       "type": "spacer",
-      "height": 14
+      "height": 4
     },
     {
       "type": "certificateTitle",
       "text": "{{certificate.title}}",
       "caption": "{{certificate.subtitle}}",
-      "fontSize": 34
+      "fontSize": 32
     },
     {
       "type": "spacer",
-      "height": 18
+      "height": 14
     },
     {
       "type": "text",
@@ -44,7 +45,7 @@
       "text": "{{recipient.name}}",
       "align": "center",
       "bold": true,
-      "fontSize": 28
+      "fontSize": 26
     },
     {
       "type": "text",
@@ -57,11 +58,11 @@
       "text": "{{course.name}}",
       "align": "center",
       "bold": true,
-      "fontSize": 20
+      "fontSize": 18
     },
     {
       "type": "spacer",
-      "height": 16
+      "height": 12
     },
     {
       "type": "twoColumn",
@@ -74,8 +75,8 @@
           "label": "Authorised Signature",
           "value": "{{issuer.name}}",
           "caption": "{{issuer.title}}",
-          "width": 260,
-          "height": 45,
+          "width": 240,
+          "height": 40,
           "align": "center"
         }
       ],
@@ -83,7 +84,7 @@
         {
           "type": "qrCode",
           "value": "{{certificate.verifyUrl}}",
-          "size": 90,
+          "size": 80,
           "caption": "Verify certificate",
           "align": "center"
         }
@@ -94,12 +95,10 @@
       "height": 8
     },
     {
-      "type": "approvalStamp",
-      "status": "{{certificate.status}}",
-      "value": "{{certificate.number}}",
-      "caption": "{{certificate.issueDate}}",
+      "type": "text",
+      "text": "Certificate No: {{certificate.number}}  ·  Issued: {{certificate.issueDate}}",
       "align": "center",
-      "width": 210
+      "fontSize": 9
     }
   ]
 }
