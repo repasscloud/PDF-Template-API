@@ -32,14 +32,40 @@
           "fontSize": 13
         },
         {
-          "type": "spacer",
-          "height": 14
+          "type": "text",
+          "text": "Date: {{report.date}}"
         },
+        {
+          "type": "text",
+          "text": "Technician: {{technician.name}}"
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "barcode",
+          "value": "{{job.number}}",
+          "width": 220,
+          "height": 48,
+          "caption": "Job {{job.number}}",
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 4
+    },
+    {
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
+      "leftBlocks": [
         {
           "type": "image",
           "base64": "{{company.logoBase64}}",
           "width": 80,
-          "height": 36,
+          "height": 20,
           "align": "left"
         },
         {
@@ -57,26 +83,8 @@
       ],
       "rightBlocks": [
         {
-          "type": "barcode",
-          "value": "{{job.number}}",
-          "width": 220,
-          "height": 48,
-          "caption": "Job {{job.number}}",
-          "align": "right"
-        },
-        {
-          "type": "text",
-          "text": "Date: {{report.date}}",
-          "align": "right"
-        },
-        {
-          "type": "text",
-          "text": "Technician: {{technician.name}}",
-          "align": "right"
-        },
-        {
           "type": "spacer",
-          "height": 14
+          "height": 24
         },
         {
           "type": "addressBlock",

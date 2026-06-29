@@ -19,7 +19,7 @@ public sealed class ApprovalStampBlockRenderer : IBlockRenderer
 
         var width = block.Width ?? 180;
         var padding = block.Padding ?? 8;
-        var color = block.Color ?? "#166534";
+        var color = BlockRenderHelpers.ResolveString(block.Color ?? "#166534", context);
 
         var aligned = BlockRenderHelpers.ApplyAlignment(container, block.Align ?? "right");
 

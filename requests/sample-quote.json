@@ -26,6 +26,12 @@
       "status": "DRAFT",
       "preparedBy": "System"
     },
+    "stamp": {
+      "status": "PENDING",
+      "value": "Prepared by Sales Team",
+      "caption": "24 June 2026",
+      "color": "#C2500A"
+    },
     "customer": {
       "name": "Acme Pty Ltd",
       "email": "accounts@acme.example",

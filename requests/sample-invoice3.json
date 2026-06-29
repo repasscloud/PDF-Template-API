@@ -1,0 +1,72 @@
+{
+  "templateName": "invoice2",
+  "output": {
+    "fileName": "invoice2-1002.pdf"
+  },
+  "templatePatch": {
+    "margin": 36
+  },
+  "data": {
+    "document": {
+      "watermark": "DRAFT"
+    },
+    "company": {
+      "name": "Example SaaS Pty Ltd",
+      "abn": "ABN 12 345 678 901",
+      "email": "accounts@example.test",
+      "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAHEAAAAYCAYAAADNhRJCAAAErElEQVR4nO2aXWgcVRTHf6uCH22sXlvixUZUTLhqikJbU2z9wKcio7VaxpTWijgPRYJoVDDgg6K0D/WjxWJbmQfFqnFEE8sgqCD6UGMwpUpoHVJtqxGmacvUhFJrJa4Pd1YnQ3Ynu7OTXWP/MMzeuf977rl79nzcO5vL5/MkobGtPZlUJuYs2Dpl7pA9N1ft+WcSzqnVxKODHbWaelohpFJCqryQantWc5yXRMjCCwsYHewoyyNLQUg1FzgWezwe+F7iGusRQqoO4EngCuAUcCDwvcWTcWvmiQWMDnZU2yv3BL6XC6//qgFbgNeAL4BLgNuBn4vx62aR1fTKOIRUq4F3gS7gbWAv8CPwAPBLSPsd2Ac8Fvhen5CqFRiMiDkD/AScD8wHDgD3AznghwjvNLALeDjwvVOT6PIE0AFIYAh4OvC9z2O0i8P71UALsD/wvVURGZcDfkHvmntiFFXyyIVhDsoLqQYAAt97D9gEvAh8BvwJ3Bf43nDBa4GrgEZgW0zevvD5XuA64CVgBXADsD7C84B5QCdgAo/HFRNSrQBeAT4KucNAj5BqXpQX+N4A8CqwJJz3NyHVTiHVhWH/kajedWVEqIoho+F0UeT588BJ4HpgU+B7R4RU1wqpvhJSjQEjQBPQHJPXF/jeUeBw2P4EbTCASyO8bwLfOx72A9w4iW6FnPZUqIsBzAJuihMD3+sEBHAr8DWwJryI6113RoTMKtdt6FDYBzwX5p0HgdvQBUQz2pDnxsaNJ7QLaBNSXQYsD9vfT8IZCO8vABdEfmwTwqmQalFYzTaHY/aEXWPhfYLemeXEkf7uCe3GtvayxqfIkQuFVNGKWgKr0Qt/BOhBfym9wDp0XtuBzm0Af1QyKTrUHkfnxA+AzXFC4Hu9QqpO4FGgS0hV+P4bAt87GaGeQIfrL9H58RiwBfgw7O+O6p1L2uxXssWIGzAiq1xRzFmwta43+0IqhS5sdgS+tz6JnwWq5onFDFeMM1WD6tCaLPv/jNRGnIrxSo2rxDvrCYHvefwbimuCuixszqI8nDViShimNZDMyhY1P7EZ6e+uSkg1TGs+evMMuprb4Dr25gpkdLuOvSy1QtOImeaJu13HzgG3AM8apnWzYVo70wg0TKs1rYyskdoTG9vaKy5uCuMzwF/hfQuwxDCtNcBK9DFWv+vYPYZpzUbvwxa7jl1qG7UdWBqRsQt4E7gHeJ8aFzVQpXBaRxXmUsO08uhN90bgU+AZ17HXAhim9R367UAP0A68k2BA0OejURkrgdnAlcCdwF0ZrKMspDbiNRvf+ufzwa6HptRXakxK7I7mM8O0WqOdrmMfNkwrb5hWE7AW7VnlogXocR17DOg1TGtDKo2rgFQ5MWqMeLtYX6kxGeA0IAzTiq7zDfSR2EHXsU9UIGMIuNcwrQbDtO4GGqqpcCWoeXWaMQ4BFwFnDNNa5Tp2L/otw+vos8fJUAjJoM9RZ0VlAB+jPXgYcICj2ak/NcwYI7qO/SuwLPZsHLgjRm0CDrmO/W0RGZMVKnEZ6ypWNAOkCqfxfBZtF+srNSZrGKa1HNgPvDxtk04DEt9iQLZ/lkrCSH93zUv4esffj/2nrD7i7boAAAAASUVORK5CYII=",
+      "address": {
+        "line1": "Level 1, 100 George Street",
+        "city": "Sydney",
+        "state": "NSW",
+        "postcode": "2000"
+      }
+    },
+    "invoice": {
+      "number": "INV-1002",
+      "date": "24 June 2026",
+      "dueDate": "1 July 2026",
+      "paymentUrl": "https://example.test/pay/INV-1002"
+    },
+    "customer": {
+      "name": "Acme Pty Ltd",
+      "email": "accounts@acme.example",
+      "address": {
+        "line1": "200 Collins Street",
+        "city": "Melbourne",
+        "state": "VIC",
+        "postcode": "3000"
+      }
+    },
+    "items": [
+      {
+        "description": "Platform licence",
+        "quantity": "1",
+        "unitPrice": "$499.00",
+        "total": "$499.00"
+      },
+      {
+        "description": "Support package",
+        "quantity": "2",
+        "unitPrice": "$150.00",
+        "total": "$300.00"
+      },
+      {
+        "description": "Implementation setup",
+        "quantity": "1",
+        "unitPrice": "$250.00",
+        "total": "$250.00"
+      }
+    ],
+    "totals": {
+      "subtotal": "$1,049.00",
+      "gst": "$104.90",
+      "total": "$1,153.90"
+    },
+    "approval": {
+      "status": "APPROVED",
+      "name": "System",
+      "date": "24 June 2026"
+    }
+  }
+}

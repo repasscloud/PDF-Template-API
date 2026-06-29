@@ -17,7 +17,7 @@
       "type": "image",
       "base64": "{{company.logoBase64}}",
       "width": 80,
-      "height": 40,
+      "height": 50,
       "align": "center"
     },
     {
@@ -28,11 +28,11 @@
       "type": "certificateTitle",
       "text": "{{certificate.title}}",
       "caption": "{{certificate.subtitle}}",
-      "fontSize": 32
+      "fontSize": 36
     },
     {
       "type": "spacer",
-      "height": 14
+      "height": 50
     },
     {
       "type": "text",
@@ -45,7 +45,7 @@
       "text": "{{recipient.name}}",
       "align": "center",
       "bold": true,
-      "fontSize": 26
+      "fontSize": 28
     },
     {
       "type": "text",
@@ -58,11 +58,11 @@
       "text": "{{course.name}}",
       "align": "center",
       "bold": true,
-      "fontSize": 18
+      "fontSize": 20
     },
     {
       "type": "spacer",
-      "height": 12
+      "height": 50
     },
     {
       "type": "twoColumn",

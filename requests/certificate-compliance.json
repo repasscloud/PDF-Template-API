@@ -1,0 +1,219 @@
+{
+  "template": {
+    "title": "",
+    "pageSize": "A4",
+    "orientation": "Portrait",
+    "margin": 40,
+    "defaultFontSize": 10,
+    "blockSpacing": 6,
+    "showPageNumbers": false,
+    "blocks": [
+      {
+        "type": "twoColumn",
+        "gap": 20,
+        "leftWidth": 1,
+        "rightWidth": 1,
+        "leftBlocks": [
+          {
+            "type": "image",
+            "dataPath": "logoBase64",
+            "width": 80,
+            "height": 36,
+            "align": "left"
+          }
+        ],
+        "rightBlocks": [
+          {
+            "type": "text",
+            "text": "{{certificateId}}",
+            "bold": true,
+            "fontSize": 9,
+            "align": "right"
+          },
+          {
+            "type": "text",
+            "text": "Issued by {{issuedBy}}",
+            "fontSize": 8,
+            "align": "right"
+          }
+        ]
+      },
+      {
+        "type": "spacer",
+        "height": 8
+      },
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "{{certificateTitle}}",
+        "fontSize": 22
+      },
+      {
+        "type": "line"
+      },
+      {
+        "type": "spacer",
+        "height": 4
+      },
+      {
+        "type": "twoColumn",
+        "gap": 20,
+        "leftWidth": 1,
+        "rightWidth": 1,
+        "leftBlocks": [
+          {
+            "type": "text",
+            "text": "RECIPIENT",
+            "bold": true,
+            "fontSize": 8
+          },
+          {
+            "type": "text",
+            "text": "{{recipientName}}",
+            "bold": true,
+            "fontSize": 14
+          }
+        ],
+        "rightBlocks": [
+          {
+            "type": "text",
+            "text": "COMPLETION DATE",
+            "bold": true,
+            "fontSize": 8
+          },
+          {
+            "type": "text",
+            "text": "{{completionDate}}",
+            "fontSize": 12
+          }
+        ]
+      },
+      {
+        "type": "line"
+      },
+      {
+        "type": "spacer",
+        "height": 4
+      },
+      {
+        "type": "text",
+        "text": "COMPLETED COURSE",
+        "bold": true,
+        "fontSize": 8
+      },
+      {
+        "type": "text",
+        "text": "{{courseName}}",
+        "fontSize": 13
+      },
+      {
+        "type": "line"
+      },
+      {
+        "type": "spacer",
+        "height": 4
+      },
+      {
+        "type": "twoColumn",
+        "gap": 20,
+        "leftWidth": 1,
+        "rightWidth": 1,
+        "leftBlocks": [
+          {
+            "type": "text",
+            "text": "ISSUED BY",
+            "bold": true,
+            "fontSize": 8
+          },
+          {
+            "type": "text",
+            "text": "{{issuedBy}}",
+            "fontSize": 11
+          }
+        ],
+        "rightBlocks": [
+          {
+            "type": "text",
+            "text": "VALID UNTIL",
+            "bold": true,
+            "fontSize": 8
+          },
+          {
+            "type": "text",
+            "text": "{{validUntil}}",
+            "fontSize": 11
+          }
+        ]
+      },
+      {
+        "type": "line"
+      },
+      {
+        "type": "spacer",
+        "height": 4
+      },
+      {
+        "type": "termsAndConditions",
+        "label": "Notes",
+        "lines": [
+          "{{notes}}"
+        ]
+      },
+      {
+        "type": "spacer",
+        "height": 20
+      },
+      {
+        "type": "signature",
+        "label": "Authorised Signatory",
+        "value": "{{issuerName}}",
+        "caption": "{{issuerTitle}}, {{issuedBy}}",
+        "width": 240,
+        "height": 36
+      },
+      {
+        "type": "spacer",
+        "height": 20
+      },
+      {
+        "type": "twoColumn",
+        "gap": 20,
+        "leftWidth": 3,
+        "rightWidth": 2,
+        "leftBlocks": [
+          {
+            "type": "text",
+            "text": "This certificate is issued by {{issuedBy}} and can be independently verified by scanning the QR code or visiting the verification URL.",
+            "fontSize": 8
+          }
+        ],
+        "rightBlocks": [
+          {
+            "type": "qrCode",
+            "value": "{{qrCodeValue}}",
+            "size": 70,
+            "caption": "Verify Certificate",
+            "align": "right"
+          }
+        ]
+      }
+    ]
+  },
+  "data": {
+    "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=",
+    "certificateTitle": "Certificate of Completion",
+    "recipientName": "Jane Smith",
+    "courseName": "Cyber Security Awareness Training",
+    "completionDate": "30 June 2026",
+    "issuedBy": "RePass Cloud Pty Ltd",
+    "certificateId": "CERT-2026-000123",
+    "issuerName": "Danijel Wynyard",
+    "issuerTitle": "Director",
+    "validUntil": "30 June 2028",
+    "notes": "Completed all required modules and assessments.",
+    "qrCodeValue": "https://example.com/verify/CERT-2026-000123"
+  },
+  "output": {
+    "fileName": "certificate-compliance.pdf"
+  }
+}

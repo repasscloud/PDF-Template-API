@@ -32,19 +32,48 @@
           "fontSize": 13
         },
         {
-          "type": "spacer",
-          "height": 14
+          "type": "text",
+          "text": "Delivery Date: {{delivery.date}}"
         },
+        {
+          "type": "text",
+          "text": "Carrier: {{delivery.carrier}}"
+        },
+        {
+          "type": "text",
+          "text": "Tracking: {{delivery.trackingNumber}}"
+        }
+      ],
+      "rightBlocks": [
+        {
+          "type": "barcode",
+          "value": "{{delivery.number}}",
+          "width": 220,
+          "height": 48,
+          "align": "right"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "height": 1
+    },
+    {
+      "type": "twoColumn",
+      "gap": 20,
+      "leftWidth": 1,
+      "rightWidth": 1,
+      "leftBlocks": [
         {
           "type": "image",
           "base64": "{{company.logoBase64}}",
           "width": 80,
-          "height": 36,
+          "height": 20,
           "align": "left"
         },
         {
           "type": "spacer",
-          "height": 4
+          "height": 1
         },
         {
           "type": "addressBlock",
@@ -57,30 +86,8 @@
       ],
       "rightBlocks": [
         {
-          "type": "barcode",
-          "value": "{{delivery.number}}",
-          "width": 220,
-          "height": 48,
-          "align": "right"
-        },
-        {
-          "type": "text",
-          "text": "Delivery Date: {{delivery.date}}",
-          "align": "right"
-        },
-        {
-          "type": "text",
-          "text": "Carrier: {{delivery.carrier}}",
-          "align": "right"
-        },
-        {
-          "type": "text",
-          "text": "Tracking: {{delivery.trackingNumber}}",
-          "align": "right"
-        },
-        {
           "type": "spacer",
-          "height": 14
+          "height": 21
         },
         {
           "type": "addressBlock",

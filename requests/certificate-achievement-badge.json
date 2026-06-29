@@ -1,0 +1,141 @@
+{
+  "template": {
+    "title": "",
+    "pageSize": "A4",
+    "orientation": "Landscape",
+    "margin": 40,
+    "defaultFontSize": 11,
+    "blockSpacing": 8,
+    "showPageNumbers": false,
+    "blocks": [
+      {
+        "type": "twoColumn",
+        "gap": 32,
+        "leftWidth": 3,
+        "rightWidth": 1,
+        "leftBlocks": [
+          {
+            "type": "image",
+            "dataPath": "logoBase64",
+            "width": 80,
+            "height": 44,
+            "align": "left"
+          },
+          {
+            "type": "spacer",
+            "height": 16
+          },
+          {
+            "type": "heading",
+            "level": 1,
+            "text": "{{certificateTitle}}",
+            "fontSize": 24
+          },
+          {
+            "type": "spacer",
+            "height": 36
+          },
+          {
+            "type": "text",
+            "text": "{{recipientName}}",
+            "bold": true,
+            "fontSize": 40
+          },
+          {
+            "type": "spacer",
+            "height": 4
+          },
+          {
+            "type": "text",
+            "text": "has completed",
+            "fontSize": 12
+          },
+          {
+            "type": "spacer",
+            "height": 4
+          },
+          {
+            "type": "text",
+            "text": "{{courseName}}",
+            "bold": true,
+            "fontSize": 20
+          },
+          {
+            "type": "spacer",
+            "height": 20
+          },
+          {
+            "type": "text",
+            "text": "Completed on {{completionDate}}",
+            "fontSize": 10
+          },
+          {
+            "type": "text",
+            "text": "Issued by {{issuedBy}}",
+            "fontSize": 10
+          },
+          {
+            "type": "text",
+            "text": "Certificate ID: {{certificateId}}",
+            "fontSize": 9
+          },
+          {
+            "type": "spacer",
+            "height": 28
+          },
+          {
+            "type": "signature",
+            "label": "{{issuerTitle}}",
+            "value": "{{issuerName}}",
+            "caption": "{{issuedBy}}",
+            "width": 200,
+            "height": 32
+          }
+        ],
+        "rightBlocks": [
+          {
+            "type": "spacer",
+            "height": 70
+          },
+          {
+            "type": "approvalStamp",
+            "status": "VERIFIED",
+            "value": "{{courseName}}",
+            "caption": "{{completionDate}}",
+            "color": "#2563EB",
+            "align": "center",
+            "width": 150
+          },
+          {
+            "type": "spacer",
+            "height": 16
+          },
+          {
+            "type": "qrCode",
+            "value": "{{qrCodeValue}}",
+            "size": 80,
+            "caption": "Verify",
+            "align": "center"
+          }
+        ]
+      }
+    ]
+  },
+  "data": {
+    "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=",
+    "certificateTitle": "Certificate of Completion",
+    "recipientName": "Jane Smith",
+    "courseName": "Cyber Security Awareness Training",
+    "completionDate": "30 June 2026",
+    "issuedBy": "RePass Cloud Pty Ltd",
+    "certificateId": "CERT-2026-000123",
+    "issuerName": "Danijel Wynyard",
+    "issuerTitle": "Director",
+    "validUntil": "30 June 2028",
+    "notes": "Completed all required modules and assessments.",
+    "qrCodeValue": "https://example.com/verify/CERT-2026-000123"
+  },
+  "output": {
+    "fileName": "certificate-achievement-badge.pdf"
+  }
+}

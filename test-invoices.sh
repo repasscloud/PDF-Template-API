@@ -72,6 +72,16 @@ curl --fail --silent --show-error \
 
 echo "Created invoice2-1002.pdf"
 
+echo "Generating invoice2-1003.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/sample-invoice3.json" \
+  --output "invoice2-1003.pdf"
+
+echo "Created invoice2-1003.pdf"
+
 # ==============================================================================
 # Quote example
 # Uses: watermark, twoColumn, image, addressBlock, certificateTitle, barcode,
@@ -160,5 +170,139 @@ curl --fail --silent --show-error \
   --output "delivery-docket-6001.pdf"
 
 echo "Created delivery-docket-6001.pdf"
+
+
+# ==============================================================================
+# Certificate of Completion — Classic Formal
+# Uses: watermark, image, line, certificateTitle, text, signature, approvalStamp, qrCode
+# Output: certificate-classic.pdf
+# ==============================================================================
+
+echo "Generating certificate-classic.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/certificate-classic.json" \
+  --output "certificate-classic.pdf"
+
+echo "Created certificate-classic.pdf"
+
+
+# ==============================================================================
+# Certificate of Completion — Modern Corporate
+# Uses: image, heading, text, line, twoColumn, signature, qrCode
+# Output: certificate-modern-corporate.pdf
+# ==============================================================================
+
+echo "Generating certificate-modern-corporate.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/certificate-modern-corporate.json" \
+  --output "certificate-modern-corporate.pdf"
+
+echo "Created certificate-modern-corporate.pdf"
+
+
+# ==============================================================================
+# Certificate of Completion — Premium Gold
+# Uses: watermark, image, line, certificateTitle, text, signature, approvalStamp, qrCode
+# Output: certificate-premium-gold.pdf
+# ==============================================================================
+
+echo "Generating certificate-premium-gold.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/certificate-premium-gold.json" \
+  --output "certificate-premium-gold.pdf"
+
+echo "Created certificate-premium-gold.pdf"
+
+
+# ==============================================================================
+# Certificate of Completion — Compliance / Audit Friendly (A4 Portrait)
+# Uses: twoColumn, image, heading, line, text, termsAndConditions, signature, qrCode
+# Output: certificate-compliance.pdf
+# ==============================================================================
+
+echo "Generating certificate-compliance.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/certificate-compliance.json" \
+  --output "certificate-compliance.pdf"
+
+echo "Created certificate-compliance.pdf"
+
+
+# ==============================================================================
+# Certificate of Completion — Achievement Badge
+# Uses: twoColumn, image, heading, text, signature, approvalStamp, qrCode
+# Output: certificate-achievement-badge.pdf
+# ==============================================================================
+
+echo "Generating certificate-achievement-badge.pdf..."
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf" \
+  -H "Content-Type: application/json" \
+  --data-binary "@requests/certificate-achievement-badge.json" \
+  --output "certificate-achievement-badge.pdf"
+
+echo "Created certificate-achievement-badge.pdf"
+
+
+# ==============================================================================
+# Stamp examples
+# Stamps invoice2-1002.pdf as APPROVED (green) and certificate-4001.pdf
+# as VERIFIED (green), both top-right corner.
+# ==============================================================================
+
+echo "Stamping invoice2-1002.pdf -> invoice2-1002-approved.pdf..."
+
+INVOICE2_B64=$(base64 -i "invoice2-1002.pdf")
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf/stamp" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"pdfBase64\": \"$INVOICE2_B64\",
+    \"status\": \"APPROVED\",
+    \"value\": \"Approved by Finance\",
+    \"caption\": \"$(date '+%d %B %Y')\",
+    \"color\": \"#166534\",
+    \"position\": \"topRight\",
+    \"width\": 240,
+    \"fileName\": \"invoice2-1002-approved.pdf\"
+  }" \
+  --output "invoice2-1002-approved.pdf"
+
+echo "Created invoice2-1002-approved.pdf"
+
+echo "Stamping certificate-4001.pdf -> certificate-4001-verified.pdf..."
+
+CERT_B64=$(base64 -i "certificate-4001.pdf")
+
+curl --fail --silent --show-error \
+  -X POST "$URL/pdf/stamp" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"pdfBase64\": \"$CERT_B64\",
+    \"status\": \"VERIFIED\",
+    \"value\": \"Verified by Registrar\",
+    \"caption\": \"$(date '+%d %B %Y')\",
+    \"color\": \"#166534\",
+    \"position\": \"topRight\",
+    \"width\": 300,
+    \"fileName\": \"certificate-4001-verified.pdf\"
+  }" \
+  --output "certificate-4001-verified.pdf"
+
+echo "Created certificate-4001-verified.pdf"
 
 echo "Done."
