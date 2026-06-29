@@ -277,7 +277,7 @@ curl --fail --silent --show-error \
     \"caption\": \"$(date '+%d %B %Y')\",
     \"color\": \"#166534\",
     \"position\": \"topRight\",
-    \"width\": 240,
+    \"width\": 125,
     \"fileName\": \"invoice2-1002-approved.pdf\"
   }" \
   --output "invoice2-1002-approved.pdf"
@@ -298,7 +298,7 @@ curl --fail --silent --show-error \
     \"caption\": \"$(date '+%d %B %Y')\",
     \"color\": \"#166534\",
     \"position\": \"topRight\",
-    \"width\": 300,
+    \"width\": 125,
     \"fileName\": \"certificate-4001-verified.pdf\"
   }" \
   --output "certificate-4001-verified.pdf"
