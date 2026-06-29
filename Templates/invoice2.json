@@ -155,6 +155,7 @@
           "status": "{{approval.status}}",
           "value": "Approved by {{approval.name}}",
           "caption": "{{approval.date}}",
+          "color": "{{approval.color}}",
           "align": "left",
           "width": 190
         }
